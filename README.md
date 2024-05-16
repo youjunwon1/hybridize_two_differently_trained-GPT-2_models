@@ -47,6 +47,10 @@ GPT-2 모델 교배의 가능성:
 
 
 
+"Crossbreeding an AI trained to always critique with a general AI"
+
+
+
 
 import torch
 
