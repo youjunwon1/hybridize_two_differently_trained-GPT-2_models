@@ -49,13 +49,16 @@ GPT-2 모델 교배의 가능성:
 
 
 import torch
+
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
+
 
 # 두 개의 사전 훈련된 GPT-2 모델을 로드합니다.
 model_name_1 = 'gpt2'
 model_name_2 = 'gpt2-medium'
 
 model_1 = GPT2LMHeadModel.from_pretrained(model_name_1)
+
 model_2 = GPT2LMHeadModel.from_pretrained(model_name_2)
 
 # 유전 알고리즘을 위한 하이퍼파라미터 설정
@@ -81,7 +84,9 @@ def crossover(model_a, model_b):
     return new_model
 
 def mutate(model, mutation_rate):
+
     """ 모델 가중치에 작은 변화를 줍니다. """
+    
     for param in model.parameters():
         if torch.rand(1).item() < mutation_rate:
             noise = torch.randn(param.size()) * 0.02
@@ -92,10 +97,13 @@ def mutate(model, mutation_rate):
 population = [GPT2LMHeadModel.from_pretrained(model_name_1) for _ in range(population_size)]
 
 for generation in range(num_generations):
+
     # 평가 및 선택 (여기서는 단순히 첫 번째 모델로 설정)
+    
     selected_models = population[:2]  # 예시로 첫 두 모델을 선택
 
     # 교배 및 변이
+    
     new_population = []
     for i in range(population_size):
         parent_a = selected_models[i % 2]
